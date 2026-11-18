@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Information portal for Software Engineering students listed for external defence: project hosting options, costs, and a self-hosting route.">
+    <title>Software Engineering External Defence Portal</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+      /* Toast notification styles - slide-up animation */
+      .toast {
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fff;
+        border: 1px solid #e5eaf2;
+        border-radius: 12px;
+        padding: 1rem 1.5rem;
+        box-shadow: 0 12px 36px rgba(20, 48, 90, 0.08);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-family: inherit;
+        font-size: 0.95rem;
+        color: #23456f;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateX(-50%) translateY(100%);
+        transition: all 0.35s ease;
+      }
+      .toast.visible {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      .toast.hidden {
+        display: none;
+      }
+      .toast-content {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .toast-content span:first-child {
+        font-size: 1.1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="BUK portal home">
+        <img src="/images/buk-logo.png" alt="BUK Logo" class="brand-logo">
+        <span>
+          <strong>External Defence</strong>
+          <small>Software Engineering Portal</small>
+        </span>
+      </a>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#options">Hosting options</a>
+        <a href="#students">Student list</a>
+        <a href="#pricing">Cost breakdown</a>
+      </nav>
+      <a class="nav-cta" href="#pricing">View breakdown</a>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-content">
+          <span class="eyebrow">Software Engineering • External defence</span>
+          <h1>Your software project deserves a <em>smooth, live defence.</em></h1>
+          <p class="hero-copy">Welcome, Software Engineering students. Your external defence is easier when your project is deployed and reachable. This page explains your two options: <strong>host it yourself</strong>, or use the optional managed hosting package, with a transparent cost breakdown.</p>
+          <div class="hero-actions">
+            <a class="button button-light" href="#options">See your hosting options <span>→</span></a>
+            <a class="text-link" href="#pricing">View the managed package</a>
+          </div>
+          <p class="reassurance">Paying is optional. You are free to deploy your project yourself.</p>
+        </div>
+        <div class="hero-card">
+          <div class="seal">
+            <img src="/images/buk-logo.png" alt="BUK Logo" class="seal-logo">
+          </div>
+          <p class="card-label">STUDENT SUPPORT</p>
+          <h2>Your project, your choice.</h2>
+          <p>Self-host, or let us handle hosting, database and domain for you.</p>
+          <div class="card-line"></div>
+          <div class="card-foot">
+            <span>Self-host</span>
+            <span>●</span>
+            <span>Or managed</span>
+          </div>
+        </div>
+        <div class="hero-orb orb-one"></div>
+        <div class="hero-orb orb-two"></div>
+      </section>
+
+      <section class="trust-strip">
+        <div>
+          <b>01</b>
+          <span>Read your two options</span>
+        </div>
+        <div>
+          <b>02</b>
+          <span>Self-host, or pick a domain</span>
+        </div>
+        <div>
+          <b>03</b>
+          <span>Confirm the exact total</span>
+        </div>
+        <div>
+          <b>04</b>
+          <span>Pay securely via Paystack</span>
+        </div>
+      </section>
+
+      <section class="section intro-grid" id="about">
+        <div>
+          <span class="eyebrow blue">WHY THIS PROJECT?</span>
+          <h2>Get your software project online for the defence.</h2>
+        </div>
+        <div class="intro-copy">
+          <p>External defence for a Software Engineering project is much smoother when the system is deployed and reachable by the examiners. This portal brings the hosting options and their technical costs together in one place, so you know exactly what each route involves and what it costs.</p>
+          <p><strong>Nothing here is compulsory.</strong> You can host your own project if you prefer. If anything is unclear, please contact the authorised project coordinator before paying.</p>
+        </div>
+      </section>
+
+      <section class="section options-section" id="options">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow blue">YOUR HOSTING OPTIONS</span>
+            <h2>Host it yourself, or let us do it.</h2>
+            <p>As a Software Engineering student you may already be comfortable deploying your own work. Either route is fine for your external defence. Pick whichever suits you.</p>
+          </div>
+        </div>
+        <div class="options-grid">
+          <article class="option-card">
+            <span class="option-tag">Free • You are in control</span>
+            <h3>Host it yourself</h3>
+            <p>Deploy the project on your own account and keep full ownership of the code, data and domain.</p>
+            <ul>
+              <li>Use any hosting provider you trust, such as Render, Railway, Fly.io, Vercel or a VPS</li>
+              <li>Use your own database, for example a MongoDB Atlas free tier</li>
+              <li>Register your own domain, or use the free subdomain your host provides</li>
+              <li>Keep secrets in environment variables and test the live link before the defence day</li>
+            </ul>
+            <p class="option-foot">No payment on this site is needed for this route.</p>
+          </article>
+          <article class="option-card option-card-accent">
+            <span class="option-tag">Optional • We handle it</span>
+            <h3>Managed hosting package</h3>
+            <p>Prefer to skip deployment and focus on your defence? The package covers the setup for you.</p>
+            <ul>
+              <li>Website hosting</li>
+              <li>Premium database service</li>
+              <li>One domain of your choice (.com or .ng)</li>
+              <li>A fixed, transparent price shown below</li>
+            </ul>
+            <a class="button button-blue" href="#pricing">View the package and cost <span>→</span></a>
+          </article>
+        </div>
+        <p class="notice"><strong>Not sure which to choose?</strong> Ask the authorised project coordinator. You can decide later; choosing to self-host never affects your eligibility to defend.</p>
+      </section>
+
+      <section class="section students-section" id="students">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow blue">STUDENT INFORMATION</span>
+            <h2>Software Engineering external defence list</h2>
+            <p>Select your name from the list below before proceeding with payment. Only registered students can complete the managed hosting payment.</p>
+          </div>
+          <span class="count-pill" id="studentCount">30 students</span>
+        </div>
+        <div id="studentSelectionContainer">
+          <div class="student-grid" id="studentGrid"></div>
+        </div>
+        <p class="notice"><strong>Important:</strong> This is the official registration list. Each student must select their name before payment. Payments are linked to the selected student to verify who has paid.</p>
+      </section>
+
+      <section class="pricing-wrap" id="pricing">
+        <div class="section pricing-section">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">OPTIONAL MANAGED PACKAGE</span>
+              <h2>Know the cost before you proceed.</h2>
+              <p>Only needed if you do <strong>not</strong> want to host the project yourself. Fixed Naira prices: Hosting ₦308,000, Database ₦77,000, Domain (₦77,000 for .ng or ₦92,400 for .com).</p>
+            </div>
+          </div>
+          <div class="price-layout">
+            <div class="price-card">
+              <h3>Managed package components</h3>
+              <div class="price-row">
+                <span>
+                  <b>Website hosting</b>
+                  <small>Hosting package</small>
+                </span>
+                <strong>
+                  ₦308,000
+                  <small>Naira</small>
+                </strong>
+              </div>
+              <div class="price-row">
+                <span>
+                  <b>Premium database</b>
+                  <small>Database service</small>
+                </span>
+                <strong>
+                  ₦77,000
+                  <small>Naira</small>
+                </strong>
+              </div>
+              <div class="price-row">
+                <span>
+                  <b>.com domain</b>
+                  <small>Choose one domain option</small>
+                </span>
+                <strong>
+                  ₦92,400
+                  <small>Naira</small>
+                </strong>
+              </div>
+              <div class="price-row">
+                <span>
+                  <b>.ng domain</b>
+                  <small>Choose one domain option</small>
+                </span>
+                <strong>
+                  ₦77,000
+                  <small>Naira</small>
+                </strong>
+              </div>
+              <p class="price-footnote">The domain options are alternatives. Only one domain is included in the total.</p>
+            </div>
+            <div class="checkout-card">
+              <span class="eyebrow blue">MANAGED PACKAGE</span>
+              <h3>Choose a domain</h3>
+              <label class="domain-option">
+                <input type="radio" name="domain" value="com" checked>
+                <span>
+                  <b>.com</b>
+                  <small>International domain</small>
+                </span>
+                <strong>₦92,400</strong>
+              </label>
+              <label class="domain-option">
+                <input type="radio" name="domain" value="ng">
+                <span>
+                  <b>.ng</b>
+                  <small>Nigerian domain</small>
+                </span>
+                <strong>₦77,000</strong>
+              </label>
+              <div class="summary-line">
+                <span>Hosting + database</span>
+                <b>₦385,000</b>
+              </div>
+              <div class="summary-line">
+                <span>Selected domain</span>
+                <b id="domainUsd">₦92,400</b>
+              </div>
+              <div class="summary-line">
+                <span>Total to pay</span>
+                <b id="totalUsd">₦477,400</b>
+                <strong id="totalNaira">₦477,400</strong>
+              </div>
+              <form id="paymentForm">
+                <p class="student-requirement-note"><strong>Step 1: Select a student</strong> - Click a student's name in the list above before proceeding. Payment is linked to your selected student to verify who has paid.</p>
+                <label class="field-label" for="fullName">Your name (email for communication)</label>
+                <input id="fullName" name="fullName" required placeholder="Enter your full name">
+                <label class="field-label" for="email">Email address</label>
+                <input id="email" name="email" type="email" required placeholder="you@example.com">
+                <button class="button button-blue pay-button" type="submit">Continue to secure payment <span>→</span></button>
+                <p class="secure-note">You will be redirected to Paystack to complete payment. Your card details are not collected on this website. Prefer to host it yourself? <a href="#options">You can skip this payment.</a></p>
+                <p id="paymentMessage" class="payment-message" role="status"></p>
+              </form>
+            </div>
+          </div>
+          <p class="notice notice-dark"><strong>Please note:</strong> This is a project-cost estimate and starter implementation. incase of doubts, confirm authorisation, beneficiaries, service scope, and refund arrangements with the project coordinator before accepting payments.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-brand">
+        <img src="/images/buk-logo.png" alt="BUK Logo" class="brand-logo">
+        <span>
+          <strong>External Defence Information</strong>
+          <small>Software Engineering student portal</small>
+        </span>
+      </div>
+      <p>This website is the official Bayero University Kano website.</p>
+      <span class="copyright">© <span id="year"></span> • Software Engineering project portal</span>
+    </footer>
+
+    <!-- Toast notification for student selection -->
+    <div id="selectionToast" class="toast hidden" role="alert" aria-live="assertive">
+      <div class="toast-content">
+        <span>⚠️</span>
+        <span>Select the student making the payment</span>
+      </div>
+    </div>
+    <script src="/config.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>

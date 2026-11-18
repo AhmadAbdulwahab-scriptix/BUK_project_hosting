@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#123f83" />
+    <title>Payment status | Student External Defence Portal</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      .status-wrap {
+        max-width: 720px;
+        margin: 5rem auto;
+        padding: 0 1rem;
+      }
+
+      .status-card {
+        background: #fff;
+        border: 1px solid #e5eaf2;
+        border-radius: 18px;
+        padding: 2rem;
+        box-shadow: 0 12px 36px rgba(20, 48, 90, 0.08);
+      }
+
+      .status-pill {
+        display: inline-block;
+        border-radius: 999px;
+        padding: 0.45rem 0.85rem;
+        background: #edf2fa;
+        color: #23456f;
+        font-weight: 700;
+        text-transform: capitalize;
+      }
+
+      .status-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 0;
+        border-bottom: 1px solid #edf0f5;
+      }
+
+      .status-row span:first-child {
+        color: #64748b;
+      }
+
+      .status-note {
+        margin-top: 1rem;
+        color: #526176;
+        line-height: 1.6;
+      }
+
+      .status-actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-top: 1.5rem;
+      }
+
+      .status-actions a,
+      .status-actions button {
+        border: 0;
+        border-radius: 9px;
+        padding: 0.8rem 1rem;
+        background: #174b91;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+        font: inherit;
+      }
+
+      .status-actions .secondary {
+        background: #edf2fa;
+        color: #174b91;
+      }
+
+      .student-info {
+        background: #f0f8ff;
+        border: 1px solid #dbe9f5;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .student-info h4 {
+        margin: 0 0 0.5rem 0;
+        color: #123f83;
+        font-size: 1rem;
+      }
+
+      .student-info .student-name {
+        font-weight: 600;
+        color: #23456f;
+      }
+
+      .student-info .student-reg {
+        font-size: 0.85rem;
+        color: #64748b;
+      }
+
+      .paid-badge {
+        display: inline-block;
+        background: #10b981;
+        color: white;
+        border-radius: 999px;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-left: 0.5rem;
+      }
+
+      /* Toast notification styles - slide-up animation */
+      .toast {
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fff;
+        border: 1px solid #e5eaf2;
+        border-radius: 12px;
+        padding: 1rem 1.5rem;
+        box-shadow: 0 12px 36px rgba(20, 48, 90, 0.08);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-family: inherit;
+        font-size: 0.95rem;
+        color: #23456f;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateX(-50%) translateY(100%);
+        transition: all 0.35s ease;
+      }
+      .toast.visible {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      .toast.hidden {
+        display: none;
+      }
+      .toast-content {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .toast-content span:first-child {
+        font-size: 1.1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="BUK portal home">
+        <img src="/images/buk-logo.png" alt="BUK Logo" class="brand-logo">
+        <span>
+          <strong>External Defence</strong>
+          <small>Software Engineering Portal</small>
+        </span>
+      </a>
+    </header>
+
+    <main class="status-wrap">
+      <section class="status-card">
+        <p class="eyebrow">PAYMENT RECORD</p>
+        <h1>Check your payment status</h1>
+        <p id="statusLead" class="status-note" aria-live="polite">Retrieving your saved order…</p>
+
+        <!-- Student info section -->
+        <div id="studentInfo" class="student-info" hidden>
+          <h4>Registered Student</h4>
+          <div class="student-name" id="studentName"></div>
+          <div class="student-reg" id="studentReg"></div>
+        </div>
+
+        <div id="orderDetails" hidden>
+          <div class="status-row">
+            <span>Reference</span>
+            <strong id="reference"></strong>
+          </div>
+          <div class="status-row">
+            <span>Selected domain</span>
+            <strong id="domain"></strong>
+          </div>
+          <div class="status-row">
+            <span>Amount</span>
+            <strong id="amount"></strong>
+          </div>
+          <div class="status-row">
+            <span>Payment status</span>
+            <strong>
+              <span id="status" class="status-pill"></span>
+            </strong>
+          </div>
+          <div class="status-row">
+            <span>Last updated</span>
+            <strong id="updated"></strong>
+          </div>
+        </div>
+        <p id="statusNote" class="status-note"></p>
+        <div class="status-actions">
+          <button id="refreshStatus" type="button">Refresh status</button>
+          <a id="newAttemptLink" class="secondary" href="/?newAttempt=1" hidden>Start a new payment attempt</a>
+          <a class="secondary" href="/">Return to portal</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="/config.js"></script>
+    <script src="/order.js" defer></script>
+  </body>
+</html>
