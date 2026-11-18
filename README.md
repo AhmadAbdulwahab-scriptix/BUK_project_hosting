@@ -8,14 +8,14 @@ A mobile-friendly HTML/CSS/vanilla-JS frontend with a Node.js/Express backend, M
 
 Fixed exchange rate: **$1 = ₦1,380**.
 
-| Item | USD | NGN |
+| Item | NGN |
 |---|---:|---:|
-| Hosting | $200 | ₦276,000.00 |
-| Premium database | $50 | ₦69,000.00 |
-| .com domain | $60 | ₦82,800.00 |
-| .ng domain | $50 | ₦69,000.00 |
-| Total with .com | $310 | ₦427,800.00 |
-| Total with .ng | $300 | ₦414,000.00 |
+| Hosting | ₦276,000.00 |
+| Premium database | ₦69,000.00 |
+| .com domain | ₦82,800.00 |
+| .ng domain | ₦69,000.00 |
+| Total with .com | ₦427,800.00 |
+| Total with .ng | ₦414,000.00 |
 
 Only one domain is included in a package. The server calculates all prices; it does not trust an amount sent by the browser. Paystack receives integer kobo.
 
