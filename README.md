@@ -9,7 +9,7 @@ A mobile-friendly HTML/CSS/vanilla-JS frontend with a Node.js/Express backend, M
 Fixed exchange rate: **$1 = ₦1,380**.
 
 | Item | NGN |
-|---|---:|---:|
+|---|---:|
 | Hosting | ₦276,000.00 |
 | Premium database | ₦69,000.00 |
 | .com domain | ₦82,800.00 |
